@@ -11,8 +11,12 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 
 class Activity(db.Model):
-    product = db.Column(db.String(80), unique=True, nullable=False, primary_key=True)
-    # TODO: add user, product, request, timestamp
+    ip = db.Column(db.String(20), unique=False, nullable=False, primary_key=True)
+    user = db.Column(db.String(80), unique=False, nullable=False)
+    product = db.Column(db.String(80), unique=False, nullable=False, primary_key=True)
+    action = db.Column(db.String(80), unique=False, nullable=False, primary_key=True)
+    request = db.Column(db.String(1024), unique=False, nullable=False)
+    timestamp = db.Column(db.Datetime(), unique=False, nullable=False, primary_key=True)
 
 
 @app.route("/log", methods=["POST"])
